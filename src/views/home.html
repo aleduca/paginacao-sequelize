@@ -1,0 +1,7 @@
+<h2>Home</h2>
+<ul>
+  {{#each data.posts}}
+    <li>{{ this.dataValues.title }} {{ this.dataValues.user.dataValues.firstName }} {{ this.dataValues.user.dataValues.lastName }}</li>
+  {{/each}}
+</ul>
+{{{ data.links }}}

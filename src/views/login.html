@@ -1,0 +1,14 @@
+<h2>Login</h2>
+
+<h2>Olá, {{ name }}, {{ age }}</h2>
+
+{{ messages.errorLogged }}
+{{ messages.teste }}
+
+<form action="/login" method="post">
+    <input type="text" name="email">
+    {{ messages.email }}
+    <input type="password" name="password">
+    {{ messages.password }}
+    <button type="submit">Login</button>
+</form>
