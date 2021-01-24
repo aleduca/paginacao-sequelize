@@ -4,14 +4,18 @@ exports.paginate = {
   options: {},
   route: '',
   linksPerPage: 5,
+  request: {},
   setLimit: function (limit) {
     this.limit = limit;
+  },
+  setRequest: function (request) {
+    this.request = request;
   },
   setOptions: function (options) {
     this.options = options;
   },
-  setCurrentPage: function (page) {
-    this.currentPage = page ?? 1;
+  setCurrentPage: function () {
+    this.currentPage = this.request.query['page'] ?? 1;
   },
   paginate: function (model) {
     const offset = this.currentPage * this.limit - this.limit;
@@ -21,10 +25,10 @@ exports.paginate = {
       offset,
     });
   },
-  setRouteInSearch: function (request) {
+  setRouteInSearch: function () {
     this.route = '?';
-    const query = request.query;
-    for (const key in request.query) {
+    const query = this.request.query;
+    for (const key in query) {
       if (key !== 'page') {
         this.route += `${key}=${query[key]}&`;
       }

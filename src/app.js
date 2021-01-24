@@ -1,9 +1,9 @@
-const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
 
-const { init: initHandlebars } = require("./helpers/handlebars");
-const { sessionInit: initSession } = require("./helpers/redis");
+const { init: initHandlebars } = require('./helpers/handlebars');
+const { sessionInit: initSession } = require('./helpers/redis');
 
 const app = express();
 
@@ -12,10 +12,10 @@ initSession(app);
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "assets")));
+app.use(express.static(path.join(__dirname, 'assets')));
 
 app.use(function (request, response, next) {
-  response.locals.name = "Alexandre";
+  response.locals.name = 'Alexandre';
   response.locals.age = 38;
   if (request.session.user) {
     response.locals.user = request.session.user;
@@ -23,8 +23,9 @@ app.use(function (request, response, next) {
   next();
 });
 
-app.use("/", require("./routes/site"));
-app.use("/post", require("./routes/post"));
-app.use("/posts", require("./routes/posts"));
+app.use('/', require('./routes/site'));
+app.use('/post', require('./routes/post'));
+app.use('/posts', require('./routes/posts'));
+app.use('/search', require('./routes/search'));
 
 app.listen(process.env.PORT || 3000);
