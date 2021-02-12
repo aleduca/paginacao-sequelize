@@ -6,8 +6,6 @@ exports.posts = async function (request) {
   try {
     paginate.setLimit(5);
     paginate.setRequest(request);
-    paginate.setRouteInSearch();
-    paginate.setCurrentPage();
     paginate.setOptions({
       attributes: ['id', 'title', 'content'],
     });
@@ -27,8 +25,6 @@ exports.search = async function (request, search) {
   try {
     paginate.setLimit(2);
     paginate.setRequest(request);
-    paginate.setRouteInSearch();
-    paginate.setCurrentPage();
     paginate.setOptions({
       attributes: ['id', 'title', 'content'],
       where: {
